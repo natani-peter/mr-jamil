@@ -1,0 +1,117 @@
+{#<nav class="navbar navbar-expand-lg navbar-dark bg-dark">#}
+{#    <div class="container-fluid">#}
+{#        <div>#}
+{#            <ul class="navbar-nav">#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="{% url 'base:home' %}">#}
+{#                        HOME#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="{% url 'base:home' %}">#}
+{#                        POST#}
+{#                    </a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
+{#        <div>#}
+{#            <ul class="navbar-nav">#}
+{#                {% if user.is_authenticated %}#}
+{#                    {% if user.is_superuser %}#}
+{#                        <li class="nav-item">#}
+{##}
+{#                            <a class="nav-link" href="/admin">#}
+{#                                ADMIN#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    {% endif %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link">#}
+{#                            Welcome {{ request.user.username|title }} |#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{##}
+{#                        <a class="nav-link" href="{% url 'base:logout' %}">#}
+{#                            LOGOUT#}
+{#                        </a>#}
+{#                    </li>#}
+{##}
+{##}
+{#                {% else %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'base:login' %}">#}
+{#                            LOGIN |#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{##}
+{#                        <a class="nav-link" href="{% url 'base:sign_up' %}">#}
+{#                            REGISTER AS TEACHER#}
+{#                        </a>#}
+{#                    </li>#}
+{#                {% endif %}#}
+{##}
+{#            </ul>#}
+{#        </div>#}
+{#    </div>#}
+{#</nav>#}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid text-white">
+        <a class="navbar-brand text-dark rounded p-1 text-bg-light fw-bold">TEACHER TRACKER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li></li>
+                <li class="nav-item">
+                    <a class="nav-link active text-primary" aria-current="page" href="{% url 'base:home' %}">HOME</a>
+                </li>
+
+            </ul>
+            <div>
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <li class="nav-item">
+
+                                <a class="nav-link text-warning" href="/admin">
+                                    ADMIN
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link text-info">
+                                Welcome {{ request.user|title }}
+                                <span class="text-light">|</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'base:logout' %}">{% csrf_token %}
+                            <button type="submit" class="btn btn-danger">LOGOUT</button>
+                            </form>
+                        </li>
+
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-info" href="{% url 'base:login' %}">
+                                LOGIN |
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link text-primary" href="{% url 'base:sign_up' %}">
+                                REGISTER AS TEACHER
+                            </a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

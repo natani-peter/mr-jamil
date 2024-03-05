@@ -1,0 +1,59 @@
+{% extends 'BaseApp/base.html' %}
+
+{% block title %}
+{{ subject.name }} LESSON
+{% endblock %}
+
+{% block content %}
+ <div class="container m-5">
+            <div class="m-5">
+                <div class="pt-5">
+                    <div class="pt-5">
+                        <div class="pt-2">
+
+                            <div class="card text-center">
+                                <div class="card-header">
+                                    <h4> You are currently in {{ entered_class.name }} {{ entered_class.stream }}</h4>
+                                </div>
+                                <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                                    <div>
+                                        <a class="btn btn-success">
+                                            <p>TIME IN {{ enter_time }}</p>
+                                            <p>DURATION {{ duration|timesince }} </p>
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <a class="btn btn-secondary">
+                                            <p> SUBJECT {{ subject.name }}</p>
+                                            <p>TOPIC {{ topic.topic }}</p>
+                                        </a>
+
+                                    </div>
+
+                                    <div>
+                                        <a class="btn btn-info">
+                                            <h6> CLASS POPULATION</h6>
+                                            <p>BOYS : {{ boys }}</p>
+                                            <p>GIRLS: {{ girls }}</p>
+                                            <p>TOTAL: {{ population }}</p>
+                                        </a>
+                                    </div>
+
+                                    <a>
+                                        <div>
+                                            <a class="btn btn-warning"
+                                               href="{% url 'base:exit_class' entered_class.id %}">Exit Class</a>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'BaseApp/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+    ENTER CLASS
+{% endblock %}
+
+{% block content %}
+    {% if page  == 'one' %}
+        <div class="container m-5">
+            <div class="m-5">
+                <div class="p-5">
+                    <div class="p-3">
+                        <div class="card text-center">
+                            <div class="m-5">
+                                <form class="form p-2 m-5 text-center" action="{% url 'base:topic_details'  class_id %}"
+                                      method="post">
+                                    {% csrf_token %}
+                                    <div class="m-3">
+                                        <label for="subject_taught" class="form-label">Subject To Be Taught</label>
+                                        <select name="subject_taught" id="subject_taught" class="form-select" required>
+                                            <option selected>Select a subject</option>
+                                            {% for subject in subjects %}
+                                                <option value="{{ subject.id }}">{{ subject.name }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                    <div class="m-3">
+                                        <button class="btn btn-primary" type="submit"> NEXT</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% else %}
+        <div class="container m-5">
+            <div class="m-5">
+                <div class="p-5">
+                    <div class="p-3">
+                        <div class="card text-center">
+                            <div class="m-5">
+                                <form class="form p-2 m-5 text-center" action="{% url 'base:enter_class'  class_id %}"
+                                      method="post">
+                                    {% csrf_token %}
+                                    <div class="m-3">
+                                        <label for="topic" class="form-label">Subject Topic</label>
+                                        <input class="form-control " list="topics" name="topic" id="topic" required>
+                                        <datalist id="topics">
+                                            {% for topic in topics %}
+                                                <option >{{ topic.topic }}
+                                                </option>
+                                            {% endfor %}
+                                        </datalist>
+                                    </div>
+                                    <input type="hidden" value="{{ subject_taught }}" name="subject_taught"
+                                           id="subject_taught">
+                                    <div class="m-3">
+                                        <button class="btn btn-primary" type="submit"> SAVE</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

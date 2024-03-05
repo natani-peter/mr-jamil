@@ -1,0 +1,16 @@
+{% extends 'BaseApp/base.html' %}
+{% load django_bootstrap5 %}
+{% block title %}
+    REGISTER TEACHER
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        <form method="post" action="">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <p>Already have account ? <a href="{% url 'base:login' %}">LOG IN</a></p>
+            <button type="submit" class="btn btn-sm btn-success">SAVE TEACHER</button>
+        </form>
+    </div>
+{% endblock %}

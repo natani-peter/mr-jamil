@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            TRACKING
+        {% endblock %}
+    </title>
+    {% bootstrap_css %}
+</head>
+<body>
+{% bootstrap_messages %}
+{% include 'BaseApp/includes/navbar.html' %}
+
+<div class="row mt-1">
+    <div class="col">
+
+    </div>
+    <div class="col-6">
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+
+{% bootstrap_javascript %}
+</body>
+</html>
